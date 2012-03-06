@@ -39,11 +39,9 @@ class TwitterBootstrapFormFor::FormBuilder < ActionView::Helpers::FormBuilder
   # inside of here, and will not look correct unless they are.
   #
   def toggles(label = nil, &block)
-    template.content_tag(:div, :class => 'clearfix') do
+    template.content_tag(:div, :class => 'control-group') do
       template.concat template.content_tag(:label, label)
-      template.concat template.content_tag(:div, :class => "input") {
-        template.content_tag(:ul, :class => "inputs-list") { block.call }
-      }
+      template.content_tag(:div, :class => "controls") { block.call }
     end
   end
 
@@ -69,9 +67,9 @@ class TwitterBootstrapFormFor::FormBuilder < ActionView::Helpers::FormBuilder
   # to the supplied block.
   #
   def inline(label = nil, &block)
-    template.content_tag(:div, :class => 'clearfix') do
+    template.content_tag(:div, :class => 'control-group') do
       template.concat template.content_tag(:label, label) if label.present?
-      template.concat template.content_tag(:div, :class => 'input') {
+      template.concat template.content_tag(:div, :class => 'controls') {
         template.content_tag(:div, :class => 'inline-inputs') do
           template.fields_for(
             self.object_name,
